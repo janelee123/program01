@@ -1,0 +1,52 @@
+<import src="temp.wxml"/>
+<template is="temp" data="{{text:'hello'}}"></template>
+
+<!--pages/wxml/index.wxml-->
+<text data-test="{{test}}">hello world</text>
+
+<!-- 数据绑定如下 -->
+<text>
+当前时间：{{time}}
+</text>
+<!-- 循环 -->
+<text wx:for="{{array}}">
+  {{index}}={{item.message}}
+</text>
+<text wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+{{idx}}:{{itemName.message}}
+</text>
+<!-- 条件 -->
+<text wx:if="{{condition}}">条件逻辑</text>
+
+<block wx:for="{{[1, 2, 3]}}">
+  <view> {{index}}: </view>
+  <view> {{item}} </view>
+</block>
+
+
+<switch wx:for="{{objectArray}}" wx:key="unique">{{item.id}}</switch>
+<button bindtap="randomSwitch">switch</button>
+<button bindtap="addToFront">add to front</button>
+
+<template name="msgItem">
+  <view>
+    <text> {{index}}: {{msg}} </text>
+    <text> Time: {{time}} </text>
+  </view>
+</template>
+
+<template is="msgItem" data="{{...item}}"/>
+
+<template name="even">
+  <text>even</text>
+</template>
+
+<template name="odd">
+  <text>odd</text>
+</template>
+
+<block wx:for="{{[1,2,3,4]}}">
+  <template is="{{item%2 == 0 ? 'even' : 'odd'}}"></template>
+</block>
+
+<view style="color:{{color}};font-size:{{fontSize}}">这里是动态内联样式</view>
